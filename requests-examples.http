@@ -1,0 +1,17 @@
+# примеры API-запросов
+
+@baseUrl = http://localhost:5000
+
+# Загрузить фото
+POST {{baseUrl}}/upscale
+Content-Type: application/json
+
+{
+  "image": "lama_300px.png"
+}
+
+###
+
+# получение объявления
+GET {{baseUrl}}/ads/3
+Content-Type: application/json

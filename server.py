@@ -33,4 +33,14 @@ class PhotoUpscale(MethodView):
         pass
 
     def post(self):
-        pass
+        photo = request.json['image']
+        task = update_photo.delay(photo)
+        return jsonify(
+            {'task_id': task.id}
+        )
+
+app.add_url_rule('/upscale', view_func=PhotoUpscale.as_view('photo'), methods=['POST'])
+
+
+if __name__ == '__main__':
+    app.run()
