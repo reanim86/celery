@@ -29,8 +29,13 @@ def update_photo(image):
 
 class PhotoUpscale(MethodView):
 
-    def get(self):
-        pass
+    def get(self, task_id):
+        task = AsyncResult(task_id, app=celery)
+        status = str(task.status)
+        result = str(task.result)
+        # return jsonify(status)
+        return jsonify({'status': status,
+                        'result': result})
 
     def post(self):
         photo = request.json['image']
@@ -40,6 +45,7 @@ class PhotoUpscale(MethodView):
         )
 
 app.add_url_rule('/upscale', view_func=PhotoUpscale.as_view('photo'), methods=['POST'])
+app.add_url_rule('/tasks/<string:task_id>', view_func=PhotoUpscale.as_view('photo_get'), methods=['GET'])
 
 
 if __name__ == '__main__':
