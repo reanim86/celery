@@ -13,5 +13,5 @@ Content-Type: application/json
 ###
 
 # получение статуса
-GET {{baseUrl}}/tasks/6dc27541-4eec-42ae-8193-4ea115b3ebd0
+GET {{baseUrl}}/tasks/9cc46064-2392-47ad-b1f8-9ebba745c7fa
 Content-Type: application/json
